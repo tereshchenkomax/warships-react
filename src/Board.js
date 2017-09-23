@@ -13,22 +13,18 @@ export default class Board extends Component {
     	this.handleSubmit = this.handleSubmit.bind(this);    	
   	}
   	
-	handleChange(event) {		
+	handleChange(event) {
+        const value = event.target.value;
  		if (event.target.value > 2) {
  			this.setState({msg: "Put correct value"});
  		} else {
- 			console.log(event.target.value); 			
- 			return event.target.value;
- 			
+            this.setState({value: value});
+            console.log(this.state.value);
  		}
  	}
 
-  	handleSubmit(e) {    	
-    	e.preventDefault();
-    	console.log(`KEK`);
-    	//console.log(`value ${e.target.value}`);    	
-    	//this.setState({ value: e.target.value});
-    	
+  	handleSubmit() {
+		//TODO handle this.state.value
   	}
 
 	render() {
@@ -40,4 +36,5 @@ export default class Board extends Component {
 		);
 	}
 }
+
 

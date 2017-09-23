@@ -7,12 +7,12 @@ export default class Input extends Component {
 				<form onSubmit={this.props.onSubmit}>
 					<label>
           			Name:
-          				<input type="text" ref="input" id="guessInput" onChange={this.props.onChange} />
+          				<input type="text" ref="input" id="guessInput" onChange={this.props.onChange} value={this.props.value} />
         			</label>
-        			
         			<input type="submit" value="Submit" />
     			</form>
 			</div>
 		);
 	}
 }
+
