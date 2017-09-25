@@ -23,12 +23,6 @@
 }
 
 /*BOARD*/
-#output {
-    color: aqua;
-    text-align: center;
-    font-family: "Abyssinica SIL";
-    font-size: 1.2em;
-}
 
 div#board {
     position: relative;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Board from './Board.js'
-import logo from './logo.svg'
+import logo from './img/logo.svg'
 import './App.css'
 
 class App extends Component {
