@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import Board from './Board.js'
-import logo from './img/logo.svg'
-import './App.css'
+import Header from './Header'
+import './styles/App.css'
 
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />          
-				</div>
+				<Header />
 				<Board />        
 			</div>
 		)

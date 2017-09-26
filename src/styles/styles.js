@@ -3,10 +3,12 @@ const background = 'pink url("https://media.giphy.com/media/oyr89uTOBNVbG/giphy.
 const fontSize = '3em';
 const padding = '45px 0';
 const color = 'aqua';
+const textAlign = 'center';
 export const styles = {
     fontFamily: fontFamily,
     background: background,
     fontSize:   fontSize,
     padding:    padding,
-    color:      color
+    color:      color,
+    textAlign: textAlign
 };
