@@ -10,9 +10,6 @@ const Output = (props) => {
     );
 };
 
-Output.propTypes = {};
-Output.defaultProps = {};
-
 const outputStyles = {
     color: styles.color,
     fontFamily: styles.fontFamily,
