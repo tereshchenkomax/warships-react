@@ -4,6 +4,12 @@ import Input from './Input';
 import Output from './Output';
 import StartButton from './StartButton';
 
+const ships = [
+    {locations: ["06", "16", "26"], hits: ["", "", ""]},
+    {locations: ["24", "34", "44"], hits: ["", "", ""]},
+    {locations: ["10", "11", "12"], hits: ["", "", ""]}
+];
+
 export default class Board extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +20,8 @@ export default class Board extends Component {
             boardSize: 7,
             numShips: 3,
             shipLength: 3,
-            shipsSunk: 0
+            shipsSunk: 0,
+            guesses: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,20 +41,65 @@ export default class Board extends Component {
     handleClick() {
         alert('Be Prepared to Play');
         this.setState({started: true});
+        let cell = this.refs.test;
+        console.log(cell);
+        // cell.setAttribute("class","hit");
     }
 
     handleSubmit(e) {
-        //TODO handle this.state.value
+
         e.preventDefault();
+        let location = this.parseGuess(e);
+        //console.log(location);
+        if (location) {
+            this.state.guesses++;
+            var hit = this.fire(location);
+            //TODO display hit and miss
+            if (hit && this.state.shipsSunk === this.state.numShips) {
+                alert(`ALL SHIPS IS SUNK FOR ${this.state.guesses} GUESSES`);
+            }
+        }
+
+    }
+
+    fire(guess) {
+        for (let i = 0; i < this.state.numShips; i++) {
+            var ship = ships[i];
+            var index = ship.locations.indexOf(guess); // Выбор из массива указанного значения
+            if (index >= 0) {
+                ship.hits[index] = "hit";
+                this.setState({msg: "Hit!"});
+                if (this.isSunk(ship)) {
+                    alert("СУКА БЛЯТЬ ПОТОПИЛА МНЕ КОРАБЭЛЬ!");
+                    this.shipsSunk++;
+                }
+                //console.log(ships);
+                return true;
+            }
+            //console.log(`${ship} ${index}`);
+        }
+        this.setState({msg: "Miss!"});
+        return false;
+    }
+
+    isSunk (ship) {
+        for (let i = 0; i < this.state.shipLength;i++){
+            if (ship.hits[i] !== "hit") {
+                return false;
+            };
+        }
+        return true;
+    }
+
+    parseGuess() {
         let guess = this.state.value;
         var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
         if (guess === null || guess.length !== 2) {
             alert("ПАШОЛ НАХОЙ!")
         }
         else {
-            let firstChar = guess.charAt(0);
-            let upperFirstChar = firstChar.toUpperCase();
-            let row = alphabet.indexOf(upperFirstChar);
+            let firstChar = guess.charAt(0).toUpperCase();
+            let row = alphabet.indexOf(firstChar);
             let column = guess.charAt(1);
             if (isNaN(row) || isNaN(column)) {
                 alert("ДА ТЫ ВАЩЕ ЧТОЛЕ АХУЕЛЛА?")
@@ -57,11 +109,14 @@ export default class Board extends Component {
                 alert("ВВОДИ БЛЯТЬ ПРАВИЛЬНЫЕ СИМВОЛЫ ТЫ ЧТО ТУПОЙ ЧТОЛЕ БЛЯТЬ?");
             }
             else {
-                console.log(row + column);
                 return row + column;
             }
         }
         return null;
+    }
+    test() {
+        let cell = this.refs.test;
+        cell.setAttribute("class","hit");
     }
 
     render() {
@@ -73,12 +128,20 @@ export default class Board extends Component {
         }
         return (
             <div id="board">
+                <h1 style={testStyle} ref={input => this.test = input}>TEST</h1>
                 <Output msg={this.state.msg}/>
+
                 <Table/>
                 {inp}
             </div>
         );
     }
+}
+
+const testStyle = {
+    color: "white",
+    textAlign: "center",
+    fontSize: '1.2em'
 }
 
 Board.defaultProps = {}
