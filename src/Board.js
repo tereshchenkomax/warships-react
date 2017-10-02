@@ -3,6 +3,7 @@ import {Table} from './Table';
 import Input from './Input';
 import Output from './Output';
 import StartButton from './StartButton';
+import Square from './Square';
 
 const ships = [
     {locations: ["06", "16", "26"], hits: ["", "", ""]},
@@ -26,6 +27,7 @@ export default class Board extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.renderSquare = this.renderSquare.bind(this);
     }
 
     handleChange(event) {
@@ -55,6 +57,10 @@ export default class Board extends Component {
             this.state.guesses++;
             var hit = this.fire(location);
             //TODO display hit and miss
+            if(hit){
+                this.renderSquare('hit',location);
+                console.log('zashlo');
+            }
             if (hit && this.state.shipsSunk === this.state.numShips) {
                 alert(`ALL SHIPS IS SUNK FOR ${this.state.guesses} GUESSES`);
             }
@@ -73,10 +79,9 @@ export default class Board extends Component {
                     alert("СУКА БЛЯТЬ ПОТОПИЛА МНЕ КОРАБЭЛЬ!");
                     this.shipsSunk++;
                 }
-                //console.log(ships);
+                console.log(ships);
                 return true;
             }
-            //console.log(`${ship} ${index}`);
         }
         this.setState({msg: "Miss!"});
         return false;
@@ -114,9 +119,10 @@ export default class Board extends Component {
         }
         return null;
     }
-    test() {
-        let cell = this.refs.test;
-        cell.setAttribute("class","hit");
+
+    renderSquare(id) {
+        let msg = this.state.msg;
+        return <Square value={id} status={msg}/>;
     }
 
     render() {
@@ -128,10 +134,10 @@ export default class Board extends Component {
         }
         return (
             <div id="board">
-                <h1 style={testStyle} ref={input => this.test = input}>TEST</h1>
+                <h1 style={testStyle} >TEST</h1>
                 <Output msg={this.state.msg}/>
 
-                <Table/>
+                <Table renderSquare={this.renderSquare} />
                 {inp}
             </div>
         );
