@@ -17,6 +17,7 @@ export default class Board extends Component {
         this.state = {
             started: false,
             value: '',
+            parsedValue: '',
             msg: 'PLEASE Start game, push the button below',
             boardSize: 7,
             numShips: 3,
@@ -32,7 +33,8 @@ export default class Board extends Component {
 
     handleChange(event) {
         const value = event.target.value;
-        if (event.target.value > 2) {
+        console.log(value);
+        if (event.target.value.length > 2) {
             this.setState({msg: "Put correct value"});
         } else {
             this.setState({value: value});
@@ -51,7 +53,9 @@ export default class Board extends Component {
     handleSubmit(e) {
 
         e.preventDefault();
+
         let location = this.parseGuess(e);
+        this.setState({ parsedValue: location});
         //console.log(location);
         if (location) {
             this.state.guesses++;
@@ -121,8 +125,11 @@ export default class Board extends Component {
     }
 
     renderSquare(id) {
-        let msg = this.state.msg;
-        return <Square value={id} status={msg}/>;
+        if (id!== this.state.parsedValue) {
+            return <Square value={id}/>;
+        } else {
+        return <Square value={id} status="Hit"/>;
+        }
     }
 
     render() {

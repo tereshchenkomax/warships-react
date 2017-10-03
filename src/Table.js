@@ -10,11 +10,11 @@ export class Table extends Component {
                     <tr>
                         {this.props.renderSquare('01')}
                         {this.props.renderSquare('02')}
-                        {this.props.renderSquare(3)}
-                        {this.props.renderSquare(4)}
-                        {this.props.renderSquare(5)}
-                        {this.props.renderSquare(6)}
-                        {this.props.renderSquare(7)}
+                        {this.props.renderSquare('03')}
+                        {this.props.renderSquare('04')}
+                        {this.props.renderSquare('05')}
+                        {this.props.renderSquare('06')}
+                        {this.props.renderSquare('07')}
 
                     </tr>
                     <tr>
