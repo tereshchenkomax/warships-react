@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 
 class Square extends Component {
 
-    // shouldComponentUpdate(nextProps) {
-    //     if (nextProps.status !== null){
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.status === "" || nextProps.status === ""){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     render() {
         return (

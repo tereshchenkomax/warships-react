@@ -16,6 +16,7 @@ export default class Board extends Component {
         super(props);
         this.state = {
             started: false,
+            status: '',
             value: '',
             parsedValue: '',
             msg: 'PLEASE Start game, push the button below',
@@ -47,7 +48,6 @@ export default class Board extends Component {
         this.setState({started: true});
         let cell = this.refs.test;
         console.log(cell);
-        // cell.setAttribute("class","hit");
     }
 
     handleSubmit(e) {
@@ -55,15 +55,16 @@ export default class Board extends Component {
         e.preventDefault();
 
         let location = this.parseGuess(e);
-        this.setState({ parsedValue: location});
+        this.setState({parsedValue: location});
         //console.log(location);
         if (location) {
             this.state.guesses++;
             var hit = this.fire(location);
-            //TODO display hit and miss
-            if(hit){
-                this.renderSquare('hit',location);
-                console.log('zashlo');
+            if (hit) {
+                this.renderSquare('hit', location);
+                this.setState({status: 'hit'});
+            } else {
+                this.setState({status: 'miss'});
             }
             if (hit && this.state.shipsSunk === this.state.numShips) {
                 alert(`ALL SHIPS IS SUNK FOR ${this.state.guesses} GUESSES`);
@@ -91,11 +92,12 @@ export default class Board extends Component {
         return false;
     }
 
-    isSunk (ship) {
-        for (let i = 0; i < this.state.shipLength;i++){
+    isSunk(ship) {
+        for (let i = 0; i < this.state.shipLength; i++) {
             if (ship.hits[i] !== "hit") {
                 return false;
-            };
+            }
+            ;
         }
         return true;
     }
@@ -113,8 +115,8 @@ export default class Board extends Component {
             if (isNaN(row) || isNaN(column)) {
                 alert("ДА ТЫ ВАЩЕ ЧТОЛЕ АХУЕЛЛА?")
             }
-            else if (row < 0 || row >= this.state.boardSize ||
-                column < 0 || column >= this.state.boardSize) {
+            else if (row < 0 || row > this.state.boardSize ||
+                column < 0 || column > this.state.boardSize) {
                 alert("ВВОДИ БЛЯТЬ ПРАВИЛЬНЫЕ СИМВОЛЫ ТЫ ЧТО ТУПОЙ ЧТОЛЕ БЛЯТЬ?");
             }
             else {
@@ -125,10 +127,10 @@ export default class Board extends Component {
     }
 
     renderSquare(id) {
-        if (id!== this.state.parsedValue) {
-            return <Square value={id}/>;
+        if (id !== this.state.parsedValue) {
+            return <Square value={id} status=''/>;
         } else {
-        return <Square value={id} status="Hit"/>;
+            return <Square value={id} status={this.state.status}/>;
         }
     }
 
@@ -141,10 +143,10 @@ export default class Board extends Component {
         }
         return (
             <div id="board">
-                <h1 style={testStyle} >TEST</h1>
+                <h1 style={testStyle}>TEST</h1>
                 <Output msg={this.state.msg}/>
 
-                <Table renderSquare={this.renderSquare} />
+                <Table renderSquare={this.renderSquare}/>
                 {inp}
             </div>
         );
