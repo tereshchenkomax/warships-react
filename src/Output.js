@@ -1,20 +1,18 @@
 import React from 'react';
-import { styles } from './styles/styles';
+import styled from 'styled-components';
 
 
 const Output = (props) => {
     return (
-        <div id="output" style={outputStyles}>
-            <p>{props.msg}</p>
+        <div id="output">
+            <Pstyled>{props.msg}</Pstyled>
         </div>
     );
 };
 
-const outputStyles = {
-    color: styles.color,
-    fontFamily: styles.fontFamily,
-    textAlign: "center",
-    fontSize: '1.2em'
-}
+const Pstyled = styled.p`
+  text-align: center;
+  color: white;
+`
 
-export default Output;
+export default Output

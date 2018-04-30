@@ -1,33 +1,24 @@
-import React from 'react';
-import { styles } from './styles/styles';
+import React from 'react'
+// import { styles } from './styles/styles';
+import styled from 'styled-components'
 
 const StartButton = (props) => {
     return (
         <div id="button">
-            <button style={buttonStyle} onClick={props.onClick}>Start Game</button>
+            <Button primary onClick={props.onClick}>Start Game</Button>
         </div>
     );
 };
 
-
-const buttonStyle = {
-    display:'block',
-    margin: '0 auto',
-    textAlign: styles.textAlign,
-    transitionDuration: '0.1s',
-    backgroundColor: '#3e9240',
-    borderRadius: '20px',
-    borderBottom: '4 solid #C24648',
-    padding: '15 32',
-    color: "white",
-    textDecoration: "none",
-    fontSize: 16,
-    fontFamily: 'Oxygen',
-    letterSpacing : 2,
-    width: 200
-}
-
-StartButton.propTypes = {};
-StartButton.defaultProps = {};
+const Button = styled.button`
+  display: block;
+  background: ${props => props.primary ? 'palevioletred' : 'white'};
+  color: ${props => props.primary ? 'white' : 'palevioletred'};
+  font-size: 1em;
+  margin: 1em auto;
+  padding: 0.25em 1em;
+  border: 2px solid white;
+  border-radius: 3px;
+`;
 
 export default StartButton;

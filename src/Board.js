@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Table} from './Table';
 import Input from './Input';
 import Output from './Output';
-import StartButton from './StartButton';
 import Square from './Square';
 
 const ships = [
@@ -135,32 +134,21 @@ export default class Board extends Component {
     }
 
     render() {
-        let inp;
-        if (this.state.started) {
-            inp = (<Input onChange={this.handleChange} onSubmit={this.handleSubmit}/>);
-        } else {
-            inp = <StartButton onClick={this.handleClick}/>
-        }
+        // let inp;
+        // if (this.state.started) {
+        //     inp = (<Input onChange={this.handleChange} onSubmit={this.handleSubmit}/>);
+        // } else {
+        //     inp = <StartButton onClick={this.handleClick}/>
+        // }
         return (
             <div id="board">
-                <h1 style={testStyle}>TEST</h1>
                 <Output msg={this.state.msg}/>
-
                 <Table renderSquare={this.renderSquare}/>
-                {inp}
+                <Input onChange={this.handleChange} onSubmit={this.handleSubmit}/>
             </div>
         );
     }
 }
-
-const testStyle = {
-    color: "white",
-    textAlign: "center",
-    fontSize: '1.2em'
-}
-
-Board.defaultProps = {}
-
 
 
 

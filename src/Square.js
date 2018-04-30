@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import styled from 'styled-components'
 
 class Square extends Component {
 
@@ -12,16 +13,16 @@ class Square extends Component {
 
     render() {
         return (
-            <td style={squareStyle} id={this.props.value}>
+            <TDstyled id={this.props.value}>
                 {this.props.status}
-            </td>
+            </TDstyled>
         );
     }
 }
 
-const squareStyle = {
-    color:'red'
-}
+const TDstyled = styled.td`{
+    border: 1px solid rgba(125, 255, 125, 0.37);
+}`;
 
 Square.propTypes = {};
 Square.defaultProps = {};

@@ -4,11 +4,13 @@ const fontSize = '3em';
 const padding = '45px 0';
 const color = 'aqua';
 const textAlign = 'center';
+const margin = '0 auto'
 export const styles = {
     fontFamily: fontFamily,
     background: background,
     fontSize:   fontSize,
     padding:    padding,
     color:      color,
-    textAlign: textAlign
+    textAlign: textAlign,
+    margin: margin
 };

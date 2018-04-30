@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Board from './Board.js'
+import styled from 'styled-components'
 import Header from './Header'
+import Options from './Options'
 import './styles/App.css'
 
 class App extends Component {
@@ -8,10 +9,12 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				<Board />        
+				<Options />
 			</div>
 		)
 	}
 }
 
-export default App
+export default styled(App)`
+  text-align: center;
+`;
