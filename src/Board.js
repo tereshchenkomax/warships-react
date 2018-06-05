@@ -143,7 +143,7 @@ export default class Board extends Component {
         return (
             <div id="board">
                 <Output msg={this.state.msg}/>
-                <Table renderSquare={this.renderSquare}/>
+                <Table renderSquare={this.renderSquare} valueY={this.props.valueY} valueX={this.props.valueX}/>
                 <Input onChange={this.handleChange} onSubmit={this.handleSubmit}/>
             </div>
         );

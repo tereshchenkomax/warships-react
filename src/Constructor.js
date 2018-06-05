@@ -9,15 +9,15 @@ class Constructor extends Component {
                 <FormStyled>
                     <p>Height (up to 10)</p>
                     <DivFlexSpaceBetween>
-                        <button onClick={this.props.incrementY}>+</button>
-                        <h2>{this.props.valueY}</h2>
                         <button onClick={this.props.decrementY}>-</button>
+                        <h2>{this.props.valueY}</h2>
+                        <button onClick={this.props.incrementY}>+</button>
                     </DivFlexSpaceBetween>
                     <p>Width (up to 10)</p>
                     <DivFlexSpaceBetween>
-                        <button onClick={this.props.incrementX}>+</button>
-                        <h2>{this.props.valueX}</h2>
                         <button onClick={this.props.decrementX}>-</button>
+                        <h2>{this.props.valueX}</h2>
+                        <button onClick={this.props.incrementX}>+</button>
                     </DivFlexSpaceBetween>
                 </FormStyled>
             </DivFlex>

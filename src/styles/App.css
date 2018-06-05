@@ -25,13 +25,13 @@ div#board {
 
 div#messageArea {
     /*position: absolute;*/
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     color: rgb(125, 255, 125);
 }
 
 table {
-    border-spacing: 0px;
+    border-spacing: 0;
     position: absolute;
     left: 173px;
     top: 98px;
@@ -42,10 +42,6 @@ td {
     height: 94px;
 }
 
-/*form {*/
-    /*padding: 10px;*/
-    /*background-color: rgb(83, 175, 19);*/
-/*}*/
 
 .hit {
     background: url("../img/ship.png") no-repeat center;
